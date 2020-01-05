@@ -36,6 +36,7 @@
   + JSON-Serverでは `localhost:3000/receive` に対してGET
 + DBには `localhost:5432`
   + Java⇔DBでは `localhost:5432` に対してJDBCでアクセス
++ **空白は+にreplaceしてから！**
 
 ### ドキュメント一覧
 + [データ項目と処理フローを簡単にまとめたやつ](https://drive.google.com/open?id=1wX9jG1sOWlThZQrf9eLW6ryLY6EWUO_9)
