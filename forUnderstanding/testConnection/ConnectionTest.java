@@ -20,9 +20,9 @@ public class ConnectionTest{
 
     sc.useDelimiter("\n");
     out.println("Funbook -");
-    out.print("name: ");    name = (sc.nextLine()).replace(" ", "+");
+    out.print("name: ");    name = sc.nextLine();
     out.print("price: ");   price = Integer.parseInt((sc.nextLine()).replace("\n",     " "));
-    out.print("circle: ");  circle = (sc.nextLine()).replace(" ", "+");
+    out.print("circle: ");  circle = sc.nextLine();
     Doujinshi doujinshi = new Doujinshi(name, price, circle);
     
     // convert JSON
