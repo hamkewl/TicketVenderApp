@@ -19,7 +19,7 @@
     + 予約履歴
     + 顧客情報は予約から発見するときに必要だけど今回は実装しない
 + マスタテーブル
-    + 販売内容
+    + 販売内容 (商品内容)
 
 ### JSON-Serverの起動方法
 1. `$ sudo apt-get install nodejs npm` でNode.jsとパッケージ管理ツールのnpmをダウンロードする
@@ -36,7 +36,7 @@
   + JSON-Serverでは `localhost:3000/receive` に対してGET
 + DBには `localhost:5432`
   + Java⇔DBでは `localhost:5432` に対してJDBCでアクセス
-+ **空白は+にreplaceしてから！**
++ ~~**空白は+にreplaceしてから！**~~ **replaceする必要がないため左記記述を無効とする**
 
 ### ドキュメント一覧
 + [データ項目と処理フローを簡単にまとめたやつ](https://drive.google.com/open?id=1wX9jG1sOWlThZQrf9eLW6ryLY6EWUO_9)
