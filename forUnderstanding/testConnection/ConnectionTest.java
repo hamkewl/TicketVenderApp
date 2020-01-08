@@ -7,7 +7,7 @@ import com.google.gson.*;
 public class ConnectionTest{
   public static void main(String[] args) throws Exception{
     int n;
-    String url = "http://localhost:3000/receive";
+    String url = "http://localhost:3000/send";
     String json;
     String result;
     Scanner sc = new Scanner(System.in);

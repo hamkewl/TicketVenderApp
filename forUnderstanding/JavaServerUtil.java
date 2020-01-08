@@ -36,7 +36,7 @@ public class JavaServerUtil{
 
       // exec SQL
       stmt = con.createStatement();
-      String sql = "select * from funbook where (circlename = 'kuronekoarts')";
+      String sql = "select * from funbook";
       rset = stmt.executeQuery(sql);
       while(rset.next()){
         bookName = rset.getString("bookname");
