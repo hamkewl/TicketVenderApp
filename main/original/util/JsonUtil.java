@@ -11,52 +11,30 @@ import com.google.gson.reflect.TypeToken;
 
 public class JsonUtil{
 
-	// Normal purchase (pid: productID)
-  public String convertFromJson(String js_url, int index, Object obj){
-
-    // JSON related
-    // Ex. js_url = "http://localhost:3000/purchase/";
-    String json = null;
+  // private method
+  // Ex. js_url = "http://localhost:3000/purchase/";
+  public String getJson(String js_url, int index){
     Gson gson = new Gson();
+    String json = new ConnectionUtil().callGet(js_url + index);
 
-    json = ConnectionUtil().callGet(js_url + index);
-    if(obj instanceof Product){
-      System.out.println("Product");
-      Product response = gson.fromJson(json, Product.class);
-      return response;
-    }
-    else if(obj instanceof Purchase){
-      System.out.println("Purchase");
-      Purchase response = gson.fromJson(json, Purchase.class);
-      return response;
-    }
-    else if(obj instanceof Reservation){
-      System.out.println("Reservation");
-      Reservation response = gson.fromJson(json, Reservation.class);
-      return response;
-    }
-
-    // return response;
+    return json;
   }
 
-  public String convertToJson(String js_url, ArrayList lst){
-
-    // JSON related
-    // Ex. js_url = "http://localhost:3000/purchase/";
-    String json = null;
+  // Product.class related
+  // convert from JSON
+  public Product convertProductObject(int index){
     Gson gson = new Gson();
+    final String url = "http://localhost:3000/purchase/";
 
-    try{
-      for(int i = 0; i < lst.size(), ++i){
-        json = gson.toJson(lst.get(i));
-        result = new ConnectionUtil.callGet(js_url, json);
-        System.out.println("sent..");
-      }
-    }
-    catch(Exception e){
-      System.out.println("Access error..");
-      e.printStackTrace();
-    }
+    String json = this.getJson(url, index);
+    return (gson.fromJson(json, Product.class));
   }
+
+  // convert to JSON
+  public void pushJsonOfProduct(Product pdobj){
+    Gson gson = new Gson();
+    String json = gson.toJson(pdobj);
+  }
+
 }
 
