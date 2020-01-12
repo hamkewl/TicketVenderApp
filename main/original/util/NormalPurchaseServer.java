@@ -1,13 +1,14 @@
+package original.util;
+
 import java.io.*;
 import java.util.*;
 import java.net.*;
 import java.sql.*;
 
 import original.classes.*;
-import original.util.*;
 
-public class NormalPurchaseServer{
-  public static void main(String[] args){
+public class NormalPurchaseServer extends Thread{
+  public void run(){
     int pos = 1;
     Product pd_search, pd;
 
