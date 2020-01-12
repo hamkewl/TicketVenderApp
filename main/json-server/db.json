@@ -1,14 +1,17 @@
 {
   "purchase": [
-    {
-      "productID": "100007",
-      "id": 1
-    },
-    {
-      "productID": "200003",
-      "id": 2
-    }
   ],
-  "check": [],
-  "delete": []
+
+  "check-req": [
+  ],
+
+  "check-res": [
+  ],
+
+  "delete-req": [
+  ],
+
+  "delete-res" : [
+  ]
 }
+

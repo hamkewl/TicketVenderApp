@@ -2,10 +2,16 @@
   "purchase": [
   ],
 
-  "check": [
+  "check-req": [
   ],
 
-  "delete": [
+  "check-res": [
+  ],
+
+  "delete-req": [
+  ],
+
+  "delete-res" : [
   ]
 }
 
