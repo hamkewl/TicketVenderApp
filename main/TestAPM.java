@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.*;
 
-import org.classes.*;
-import org.util.*;
+import original.classes.*;
+import original.util.*;
 
 public class TestAPM{
   public static void main(String[] args){
