@@ -1,0 +1,11 @@
+{
+  "purchase": [
+  ],
+
+  "check": [
+  ],
+
+  "delete": [
+  ]
+}
+
