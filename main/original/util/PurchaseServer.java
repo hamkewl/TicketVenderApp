@@ -17,15 +17,13 @@ public class NormalPurchaseServer extends Thread{
         System.out.println("pos: " + pos);
         if((pd_search = new JsonUtil().convertProductObject(pos)) != null){
           pd = new AccessProductMasterDB().execSelect(pd_search.productID);
-          new AccessPurchaseDB().execInsert(pd);
+          new AccessPurchaseDB().execInsert(pd, null, null);
           ++pos;
         }
-        else{
-          break;
-        }
+        else break;
       }
       try{
-        Thread.sleep(5000);
+        Thread.sleep(6000);
       }
       catch(Exception e){
         e.printStackTrace();
@@ -33,4 +31,3 @@ public class NormalPurchaseServer extends Thread{
     }
   }
 }
-
