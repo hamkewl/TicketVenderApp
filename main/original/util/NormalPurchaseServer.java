@@ -14,7 +14,7 @@ public class NormalPurchaseServer extends Thread{
 
     while(true){
       while(true){
-        System.out.println("pos: " + pos);
+        System.out.println("[NormalPurchaseServer/] pos: " + pos);
         if((pd_search = new JsonUtil().convertProductObject(pos)) != null){
           pd = new AccessProductMasterDB().execSelect(pd_search.productID);
           new AccessPurchaseDB().execInsert(pd, null, null);

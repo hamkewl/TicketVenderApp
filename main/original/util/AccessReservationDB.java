@@ -4,37 +4,38 @@ import java.io.*;
 import java.util.*;
 import java.net.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 import original.classes.*;
 
 public class AccessReservationDB{
 
 	// Access to PostgreSQL(Port:5432) via JDBC
-  public Reservation execSelect(String reserveID, String telNumber){
+  public Reservation execSelect(Reservation rvobj){
 
     // DB related
     final String db_url = "jdbc:postgresql://localhost:5432/testdb";
     final String user = "hervtea";
     final String password = "bond";
-    final String sql = "select * from Reserve where (" +
-                       "reserveid = ? and telnumber = ?)"; 
+    String sql = "select * from Reservation where ("
+                  + "reserveid = ? and telnumber = ?)"; 
     
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
 
     // duplicate Product object
-    private String reserveID = null;  // primary-key
-    private String productID = null;
-    private Timestamp date = null;
-    private String telNumber = null;  // confirm-key
-    private int quantity = 1;
-    private int sumPrice = 1;
+    String reserveID = null;  // primary-key
+    String productID = null;
+    Timestamp date = null;
+    String telNumber = null;  // confirm-key
+    int quantity = 1;
+    int sumPrice = 1;
 
     try{
-      this.reserveid = reserveid;
-      this.telNumber = telNumber;
-
+      reserveID = rvobj.reserveID;
+      telNumber = rvobj.telNumber;
+      
       // Load JDBC Driver
       Class.forName("org.postgresql.Driver");
 
@@ -50,12 +51,11 @@ public class AccessReservationDB{
       ps.setString(2, telNumber);
       rs = ps.executeQuery();
 
-      // primary-key Queryなので多分rs内のデータは1つしかないと思われるが一応
       while(rs.next()){
-        this.productID = rs.getString("productid");
-        this.date = rs.getTimestamp("date");
-        this.quantity = rs.getInt("quantity");
-        this.sumPrice = rs.getInt("price");
+        productID = rs.getString("productid");
+        date = rs.getTimestamp("date");
+        quantity = rs.getInt("quantity");
+        sumPrice = rs.getInt("sumprice");
       }
     }
     catch(Exception e){
@@ -72,8 +72,13 @@ public class AccessReservationDB{
       }
     }
 
-    return (new Reservation(this.reserveID, this.productID, this.date,
-                          this.telNumber, this.quantity, this.sumPrice));
+    String datestr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(date);
+    System.out.println(datestr);
+
+    // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+    // String datestr = sdf.format(date);
+    return (new Reservation(reserveID, productID, datestr, 
+                                telNumber, quantity, sumPrice));
   }
 
   public void execDelete(String reserveID){
@@ -82,7 +87,7 @@ public class AccessReservationDB{
     final String db_url = "jdbc:postgresql://localhost:5432/testdb";
     final String user = "hervtea";
     final String password = "bond";
-    final String sql = "delete from Reserve where (reserveid = ?)"; 
+    final String sql = "delete from Reservation where (reserveid = ?)"; 
     
     Connection con = null;
     PreparedStatement ps = null;
@@ -102,13 +107,18 @@ public class AccessReservationDB{
       // exec SQL
       ps = con.prepareStatement(sql);
       ps.setString(1, reserveID);
-      rs = ps.executeUpdate();
+      ps.executeUpdate();
       con.commit();
     }
     catch(Exception e){
-      con.rollback();
-      System.out.println("rollback");
-      throw e;
+      try{
+        con.rollback();
+        System.out.println("rollback");
+        e.printStackTrace();
+      }
+      catch(Exception e4){
+        e4.printStackTrace();
+      }
     }
     finally{
       try{

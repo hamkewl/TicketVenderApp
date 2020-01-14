@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 import java.net.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 import original.classes.*;
 
@@ -23,9 +24,9 @@ public class AccessPurchaseDB{
     final String sql = "insert into Purchase values (?,?,?,?,?,?)";
 
     // duplicate Product object
-    private String productID = null;  // primary-key
-    private String productName = null;
-    private String description = null;
+    String productID = null;  // primary-key
+    String productName = null;
+    String description = null;
     int price = 0;
 
     try{
@@ -55,7 +56,7 @@ public class AccessPurchaseDB{
           ps.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
           ps.setString(4, null);
           ps.setInt(5, 1);
-          ps.setInt(6, pdobj.price * 1);
+          ps.setInt(6, pdobj.price);
           ps.executeUpdate();
           con.commit();
         }
@@ -79,7 +80,7 @@ public class AccessPurchaseDB{
           ps.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
           ps.setString(4, pcobj.telNumber);
           ps.setInt(5, 1);
-          ps.setInt(6, pcobj.price);
+          ps.setInt(6, pcobj.sumPrice);
           ps.executeUpdate();
           con.commit();
         }
@@ -103,7 +104,7 @@ public class AccessPurchaseDB{
           ps.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
           ps.setString(4, rvobj.telNumber);
           ps.setInt(5, 1);
-          ps.setInt(6, rvobj.price);
+          ps.setInt(6, rvobj.sumPrice);
           ps.executeUpdate();
           con.commit();
         }
@@ -116,7 +117,7 @@ public class AccessPurchaseDB{
 
       // in case of other
       else{
-        throws IllegalArgumentException("Only one argument must be null");
+        throw (new IllegalArgumentException());
       }
     }
     catch(Exception e){

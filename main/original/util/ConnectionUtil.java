@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class ConnectionUtil{
 	private static Proxy proxy
-		= new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", 8080));
+		= new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", 3000));
 	private static String proxySwitch = "0";
 	
 	public static String callGet(String strGetUrl){

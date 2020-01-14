@@ -5,12 +5,12 @@ import java.util.*;
 import java.sql.Timestamp;
 
 public class Purchase{
-  String ticketID;  // primary-key
-  String productID;
-  String date;  // convert from SimpleDataFormat
-  String telNumber;
-  int quantity;
-  int sumPrice;
+  public String ticketID;  // primary-key
+  public String productID;
+  public String date;  // convert from SimpleDataFormat
+  public String telNumber;
+  public int quantity;
+  public int sumPrice;
 
   public Purchase(){
   }

@@ -11,7 +11,6 @@ import com.google.gson.reflect.TypeToken;
 
 public class JsonUtil{
 
-  // private method
   // Ex. js_url = "http://localhost:3000/purchase/";
   public String getJson(String js_url, int index){
     Gson gson = new Gson();
@@ -23,14 +22,15 @@ public class JsonUtil{
   // Product.class related
   // convert from JSON
   public Product convertProductObject(int index){
-    Gson gson = new Gson();
     String json = null;
     final String url = "http://localhost:3000/purchase/";
+    Gson gson = new Gson();
+    Product pd;
 
-    json = this.getJson(url, index);
-    return (gson.fromJson(json, Product.class));
+    json = getJson(url, index);
+    pd = gson.fromJson(json, Product.class);
+    return pd;
   }
-
 
   // Purchase.class related
   // convert from JSON
@@ -38,32 +38,21 @@ public class JsonUtil{
     Gson gson = new Gson();
     String json = null;
     final String url = "http://localhost:3000/check-req/";
+    Purchase pc;
 
-    json = this.getJson(url, index);
-    return (gson.fromJson(json, Purchase.class));
+    json = getJson(url, index);
+    pc = gson.fromJson(json, Purchase.class);
+    return pc;
   }
-
-  /*
-  // convert to JSON
-  public String pushJsonOfPurchase(Purchase pcobj){
-    Gson gson = new Gson();
-    String json = null;
-    final String url = "http://localhost:3000/check-res/";
-
-    json = gson.toJson(pcobj);
-    return (ConnectionUtil().callPost(url, json));
-  }
-  */
-
 
   // Reservation.class related
   // convert from JSON
-  public Reservation convertReservationObject(String opt,int index){
+  public Reservation convertReservationObject(String opt, int index){
     Gson gson = new Gson();
     String json = "";
     final String url = "http://localhost:3000/";
 
-    json = this.getJson(url + opt + "/", index);
+    json = getJson(url + opt + "/", index);
     return (gson.fromJson(json, Reservation.class));
   }
 
@@ -74,7 +63,7 @@ public class JsonUtil{
     final String url = "http://localhost:3000/check-res/";
 
     json = gson.toJson(rvobj);
-    return (ConnectionUtil().callPost(url, json));
+    return (new ConnectionUtil().callPost(url, json));
   }
-
 }
+

@@ -10,13 +10,13 @@ import original.classes.*;
 public class ReservationConfirmServer extends Thread{
   public void run(){
     int pos = 1;
-    Reservation rv_search;
+    Reservation rv_search, rv;
 
     while(true){
       while(true){
-        System.out.println("pos: " + pos);
+        System.out.println("[ReservationConfirmServer/] pos: " + pos);
         if((rv_search = new JsonUtil().convertReservationObject("check-req", pos)) != null){
-          rv = new AccessReservationDB().execSelect(rv_search.productID, rv_search.telNumber);
+          rv = new AccessReservationDB().execSelect(rv_search);
           String result = new JsonUtil().pushJsonOfReservation(rv);
           ++pos;
         }
