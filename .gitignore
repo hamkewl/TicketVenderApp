@@ -1,4 +1,7 @@
+# File extension
 *.class
 
+# db.json
 forUnderstanding/json-server/db.json
+main/json-server/db.json
 

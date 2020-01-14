@@ -9,7 +9,7 @@
 ### 機能要件
 + 普通の購入と発券
 + 予約から発券
-+ 払い戻し
++ ~~払い戻し (時間的に間に合わなさそうなので実装はしません)~~
 
 ### 必要なデータテーブル
 詳細はドキュメント参照
@@ -26,18 +26,18 @@
 2. `$ npm install -g json-server` でJSON-Serverをインストール
 3. db.jsonがあるフォルダで `$ json-server --watch db.json`
 
+### Javaでのコンパイルに関する注意
++ カレントディレクトリがmain/original/utilのときにコンパイラが `original.classes.*` および `original.util.*` 系でエラーを吐いたら `$ javac (Java file) -cp ../../` してください  
+(というか非推奨行為なのでmainから直接パス指定した方が早いです)
+
 ### 各システムへのアクセス方法
 + 基本的にlocalhost上でGETとPOSTでがんばる
 + Apache Tomcatは使わない ~~(WEBアプリケーションではないので....)~~
 + JSON-Serverには `localhost:3000`
-  + Javascript→JSON-Serverでは `localhost:3000/send` に対してPOST
-  + JSON-Server→Javaでは `localhost:3000/send` に対してGET
-  + Java→JSON-Serverでは `localhost:3000/receive` に対してPOST
-  + JSON-Serverでは `localhost:3000/receive` に対してGET
+	+ アクセス先はmain/json-server/db.jsonを参照してください
 + DBには `localhost:5432`
   + Java⇔DBでは `localhost:5432` に対してJDBCでアクセス
-+ ~~**空白は+にreplaceしてから！**~~ **replaceする必要がないため左記記述を無効とする**
++ 空白は+などにreplaceする必要はない
 
 ### ドキュメント一覧
 + [データ項目と処理フローを簡単にまとめたやつ](https://drive.google.com/open?id=1wX9jG1sOWlThZQrf9eLW6ryLY6EWUO_9)
-
