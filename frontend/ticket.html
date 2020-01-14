@@ -1,0 +1,736 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8">
+  <!---  <link rel="apple-touch-icon" href="img/order.PNG" />-->
+  <script type="text/javascript" src=""></script>
+  <link rel="stylesheet" href="" type="text/css">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>Ticket App</title></head><body>
+
+<span id="Top">
+  <table id="SelectAction" style="width:95%;">
+    <tr><td><button class="Button Select SelectTicket" onclick="GoChoiceTicket()" id="">チケットを購入する</button></td></tr>
+    <tr><td><button class="Button Select SelectReserve" onclick="GoInputReserve()" id="">予約番号から発券する</button></td></tr>
+    <tr><td><button class="Button Select SelectReturn" onclick="GoInputReturn()" id="">チケットを返金する</button></td></tr>
+  </table>
+</span>
+
+<span id="ChoiceTicket">
+  <div class="Description">購入したいチケットを選択してください</div>
+  <table id="TicketTable">
+    <tr>
+      <td><button class="Button Ticket" onclick="AccessTicket('10100001')" id="">有楽町<br>¥170-</button></td>
+      <td><button class="Button Ticket" onclick="AccessTicket('10200002')" id="">東京<br>¥310-</button></td>
+      <td><button class="Button Ticket" onclick="AccessTicket('10200003')" id="">神田<br>¥310-</button></td>
+      <td><button class="Button Ticket" onclick="AccessTicket('10200004')" id="">秋葉原<br>¥310-</button></td>
+    </tr><tr>
+      <td><button class="Button Ticket" onclick="AccessTicket('10200005')" id="">御徒町<br>¥330-</button></td>
+      <td><button class="Button Ticket" onclick="AccessTicket('10200006')" id="">上野<br>¥330-</button></td>
+      <td><button class="Button Ticket" onclick="AccessTicket('10300007')" id="">尾久<br>¥340-</button></td>
+      <td><button class="Button Ticket" onclick="AccessTicket('10300008')" id="">赤羽<br>¥390-</button></td>
+    </tr><tr>
+      <td><button class="Button Ticket" onclick="AccessTicket('10300009')" id="">浦和<br>¥560-</button></td>
+      <td><button class="Button Ticket" onclick="AccessTicket('10300010')" id="">新都心<br>¥650-</button></td>
+      <td><button class="Button Ticket" onclick="AccessTicket('10300011')" id="">大宮<br>¥740-</button></td>
+      <td><button class="Button Ticket" onclick="AccessTicket('10300012')" id="">東大宮<br>¥850-</button></td>
+    </tr>
+  </table>
+  <button class="Button Back" onclick="BackTop()" id="">戻る</button>
+  <!---<button class="Button Next" onclick="" id="" disabled>次へ</button>-->
+  <span class="WhiteBack"></span>
+</span>
+<span id="InputReserve">
+  <div class="Description">発券するチケット番号を入力してください</div>
+  <span class="InputArea">
+    <form name="Reserve" id="Reserve">
+    予約番号<br>
+    <input class="BlankArea" type="tel" name="ReserveNo" onFocus="onReserve()" id="reserve" placeholder="お持ちの予約番号を入力してください" readonly><br><br>
+    電話番号<br>
+    <input class="BlankArea" type="tel" name="TellNo" onFocus="onTell()" id="tell" placeholder="予約時に入力した電話番号を入力してください" readonly>
+  </form>
+  </span>
+  <table class="NoTable">
+    <tr>
+      <td><button class="Button No" onclick="onTenkey('1')" id="1">1</button></td>
+      <td><button class="Button No" onclick="onTenkey('2')" id="2">2</button></td>
+      <td><button class="Button No" onclick="onTenkey('3')" id="3">3</button></td>
+    </tr><tr>
+      <td><button class="Button No" onclick="onTenkey('4')" id="4">4</button></td>
+      <td><button class="Button No" onclick="onTenkey('5')" id="5">5</button></td>
+      <td><button class="Button No" onclick="onTenkey('6')" id="6">6</button></td>
+    </tr><tr>
+      <td><button class="Button No" onclick="onTenkey('7')" id="7">7</button></td>
+      <td><button class="Button No" onclick="onTenkey('8')" id="8">8</button></td>
+      <td><button class="Button No" onclick="onTenkey('9')" id="9">9</button></td>
+    </tr><tr>
+      <td><button class="Button No" onclick="onTenkey('BS')" id="BS">×</button></td>
+      <td><button class="Button No" onclick="onTenkey('0')" id="0">0</button></td>
+      <td><button class="Button No" onclick="onTenkey('RET')" id="RET" style="font-size:55%;">入力</button></td>
+    </tr>
+  </table><br>
+  <button class="Button Back" onclick="BackTop()" id="">戻る</button>
+  <button class="Button Next" onclick="AccessReserve()" id="">次へ</button>
+  <span class="WhiteBack"></span>
+</span>
+<span id="InputReturn">
+  <div class="Description">返金するチケット番号を入力してください</div>
+  <span class="InputArea">
+    <form name="Return" id="Return">
+    チケット番号<br>
+    <input class="BlankArea" type="tel" name="TicketNo" onFocus="onTicket()" id="Ticket" placeholder="返金するチケットの番号を入力してください" readonly><br><br>
+    </form>
+  </span>
+  <table class="NoTable">
+    <tr>
+      <td><button class="Button No" onclick="onTenkey('1')" id="1">1</button></td>
+      <td><button class="Button No" onclick="onTenkey('2')" id="2">2</button></td>
+      <td><button class="Button No" onclick="onTenkey('3')" id="3">3</button></td>
+    </tr><tr>
+      <td><button class="Button No" onclick="onTenkey('4')" id="4">4</button></td>
+      <td><button class="Button No" onclick="onTenkey('5')" id="5">5</button></td>
+      <td><button class="Button No" onclick="onTenkey('6')" id="6">6</button></td>
+    </tr><tr>
+      <td><button class="Button No" onclick="onTenkey('7')" id="7">7</button></td>
+      <td><button class="Button No" onclick="onTenkey('8')" id="8">8</button></td>
+      <td><button class="Button No" onclick="onTenkey('9')" id="9">9</button></td>
+    </tr><tr>
+      <td><button class="Button No" onclick="onTenkey('BS')" id="BS">×</button></td>
+      <td><button class="Button No" onclick="onTenkey('0')" id="0">0</button></td>
+      <td><button class="Button No" onclick="onTenkey('RET')" id="RET" style="font-size:55%;">入力</button></td>
+    </tr>
+  </table><br>
+  <button class="Button Back" onclick="BackTop()" id="">戻る</button>
+  <button class="Button Next" onclick="AccessReturn()" id="">次へ</button>
+  <span class="WhiteBack"></span>
+</span>
+
+<span id="ContentTicket">
+  <div class="Description">購入内容確認</div>
+  <span class="ContentArea">
+    購入内容<br>
+    <span class="ResultArea" id="Area11"> ************</span><br>
+    詳細<br>
+    <span class="ResultArea" id="Area12"> ************</span><br><br><br>
+    金額<br>
+    <span class="ResultArea" id="Area13"> ¥**********-</span><br><br>
+  </span>
+  <button class="Button Back" onclick="BackChoiceTicket()" id="">戻る</button>
+  <button class="Button Next" onclick="GoCheckTicket()" id="">購入</button>
+  <span class="WhiteBack"></span>
+</span>
+<span id="ContentReserve">
+  <div class="Description">発券内容確認</div>
+  <span class="ContentArea">
+    チケット番号<br>
+    <span class="ResultArea" id="Area21"> ************</span><br><br>
+    チケット内容<br>
+    <span class="ResultArea" id="Area22"> ************</span><br><br>
+    チケット金額<br>
+    <span class="ResultArea" id="Area23"> ¥**********-</span><br><br>
+  </span>
+  <button class="Button Back" onclick="BackInputReserve()" id="">戻る</button>
+  <button class="Button Next" onclick="GoCheckReserve()" id="">発券</button>
+  <span class="WhiteBack"></span>
+</span>
+<span id="ContentReturn">
+  <div class="Description">返金内容確認</div>
+  <span class="ContentArea">
+    チケット番号<br>
+    <span class="ResultArea" id="Area31"> ************</span><br><br>
+    チケット内容<br>
+    <span class="ResultArea" id="Area32"> ************</span><br><br>
+    チケット金額<br>
+    <span class="ResultArea" id="Area33"> ¥**********-</span><br><br>
+  </span>
+  <button class="Button Back" onclick="BackInputReturn()" id="">戻る</button>
+  <button class="Button Next" onclick="GoCheckReturn()" id="">返金</button>
+  <span class="WhiteBack"></span>
+</span>
+
+<style rel="stylesheet" type="text/css">
+    *{
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
+      -webkit-touch-callout:none;
+      -webkit-user-select:none;
+    }
+    html {touch-action: manipulation;}
+    body{background-color:black;}
+    body{background-image:url("img/back.jpg");background-size:cover;}
+    body{color:#000; font-family:"Gulim",sans-serif; font-weight:600;}
+    body{text-shadow:1px 1px 0 #fff,-1px 1px 0 #fff,1px -1px 0 #fff,-1px -1px 0 #fff;}
+
+    #Top{z-index:3;}
+    #ChoiceTicket,
+    #InputReserve,
+    #InputReturn,
+    #ContentTicket,
+    #ContentReserve,
+    #ContentReturn{visibility:collapse;}
+
+    .Button{
+      display:inline-block;
+      text-decoration:none;
+      border-bottom:solid 4px #627295;
+      color:#000;
+      font-weight:600;
+      text-align:center;
+      vertical-align:middle;
+      color:#000; font-family:"Gulim",sans-serif;
+      text-shadow:1px 1px 0 #fff,-1px 1px 0 #fff,1px -1px 0 #fff,-1px -1px 0 #fff;
+    }
+
+    .Button{margin:1%; padding:10px;}
+
+    .Description{
+      position:fixed;
+      top:12%;
+      left:12%;
+      font-size:140%;
+      z-index:10;
+    }
+
+    .InputArea{
+      position:fixed;
+      z-index:7;
+      top:30%;
+      left:13%;
+    }
+
+    .BlankArea{
+      width:110%;
+    }
+
+    #SelectAction{
+      position:fixed;
+      width:95%; height:80%;
+      left:15%; top:10%;
+      z-index:3;
+    }
+    .Select{
+      width:75%; height:80%;
+      border-radius:10px;
+      font-size:80%;
+    }
+    #TicketTable{
+      position:fixed;
+      width:75%; height:60%;
+      left:15%; top:20%;
+      z-index:5;
+    }
+    .Ticket{
+      width:80%; height:100%;
+      border-radius:10px;
+      font-size:80%;
+    }
+    .NoTable{
+      position:fixed;
+      width:30%; height:50%;
+      right:15%; top:25%;
+      z-index:5;
+    }
+    .No{
+      width:45px; height:45px;
+      border-radius:30px;
+      font-size:80%;
+    }
+
+    .Back,.Next{
+      position:fixed;
+      z-index:7;
+      width:20%; height:12%;
+      border-radius:10px;
+      font-size:80%;
+    }
+    .Back{left:20%; bottom:6%;}
+    .Next{right:20%; bottom:6%;}
+
+    .WhiteBack{
+      position:fixed;
+      left:10%; top:10%;
+      width:80%; height:85%;
+      background-color:rgba(256,256,256,0.5);
+      z-index:1;
+    }
+
+    .Select{background:#ffa500;}
+    .Ticket{background:#a9e54d;}
+    .No{background:#a9e54d;}
+    .Back{background:#ff2f22;}
+    .Next{background:#3a5ee7;}
+
+    .Select:hover{background:#ef9500;}
+    .Ticket:hover{background:#99d53d;}
+    .No:hover{background:#99d53d;}
+    .Back:hover{background:#ef1f12;}
+    .Next:hover{background:#2a4ed7;}
+
+    .Button:active{
+      -webkit-transform:translateY(2px);
+      transform:translateY(2px);
+      box-shadow:0px 0px 1px rgba(0,0,0,0.2);
+      border-bottom:none;
+    }
+
+    .ContentArea{
+      position:fixed;
+      z-index:9;
+      left:15%;
+      top:20%;
+      font-size:120%;
+    }
+
+    .ResultArea{
+      position:fixed;
+      left:20%;
+    }
+
+
+    /*ここからアラートとバナーのcss*/
+    /*ここからバナー*/
+    .banner{
+      position : fixed;
+      top : -700px;
+      left : 25vw;
+      width: 50vw;
+      background: rgba(55,55,55,0.9);
+      text-shadow:none;
+      color:white;
+      text-align:center;
+      z-index:29;
+      border-radius : 20px;
+      border : solid 3px white;
+      animation: animation-banner 5s;
+    }
+    .banner p{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    @keyframes animation-banner {
+      0%{top:-700px;display:block;}
+      6%{top:20px;}
+      9%{top:0px;}
+      13%{top:12px;}
+      19%{top:5px;}
+      90%{top:5px;}
+      92%{top:7px;}
+      100%{top:-700px;}
+    }
+    @keyframes animation-banner-up {
+      0%{top:0px;}
+      100%{top:-700px;}
+    }
+
+    /*ここからアラート*/
+      .bgAlert{
+        position:fixed;
+        top:0px;
+        right:0px;
+        width:100%;
+        height:100%;
+        background: rgba(0,0,0,0.5);
+        animation:animation-background 0.3s;
+        z-index:29;
+      }
+      .alert{
+        background:rgba(55,55,55,0.9);
+        border-radius:30px;
+        color: white;
+        padding: 20px;
+        position :fixed;
+        top: 50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        text-shadow: none;
+        text-align: center;
+        overflow: hidden;
+        border: solid 3px white;
+        animation: animation-popup 0.3s;
+      }
+      .alert p{
+        font-size:120%;
+      }
+      .alert button{
+        color: white;
+        background: rgba(200,200,200,0.5);
+        width:calc(50% - 10px);
+        border-radius: 30px;
+        margin: 5px 5px;
+        outline-color: white;
+        padding:10px;
+        border: 2px solid white;
+      }
+      .alert button:active {
+        border-color: #AAA;
+        color:#AAA;
+        background: rgba(0,0,0,0.7);
+      }
+      .alert div{
+        font-size:70%;
+        text-align: right;
+      }
+
+      @keyframes animation-background{
+        0%{display:  none; background: rgba(0,0,0,0);}
+        1%{display:  block;background: rgba(0,0,0,0);}
+        100%{display:block;background: rgba(0,0,0,0.5);}
+      }
+      @keyframes animation-popup{
+        0%{display:none  ;padding-top: 0px;padding-bottom :0px;height:0px;}
+        20%{display:block;padding : 0px;height:0px;}
+        25%{display:block;padding : 0px 60px;height:0px;}
+        40%{display:block;padding : 10px 20px;height:0px;}
+        90%{display:block;padding-top: 25px;padding-bottom :25px;height:auto;}
+        100%{display:block;padding-top: 20px;padding-bottom :20px;height:auto;}
+      }
+      /*ここまでアラート*/
+
+
+</style>
+<script>
+//  /*
+//
+//<?php
+//  $.post('http://localhost:3000','productid=10100002')
+
+//  .done(function(data){
+//    console.log(data.from);
+//})
+//?>
+//
+  function BackTop(){
+    document.getElementById('Top').style.visibility="visible";
+    document.getElementById('ChoiceTicket').style.visibility="collapse";
+    document.getElementById('InputReserve').style.visibility="collapse";
+    document.getElementById('InputReturn').style.visibility="collapse";
+    document.getElementById('ContentTicket').style.visibility="collapse";
+    document.getElementById('ContentReserve').style.visibility="collapse";
+    document.getElementById('ContentReturn').style.visibility="collapse";
+    onReserve();
+    for(var i=0;i<30;i++){onTenkey('BS');}
+    onTell();
+    for(var i=0;i<30;i++){onTenkey('BS');}
+    onTicket();
+    for(var i=0;i<30;i++){onTenkey('BS');}
+    onDefalt();
+  }
+  function GoChoiceTicket(){
+    document.getElementById('Top').style.visibility="collapse";
+    document.getElementById('ChoiceTicket').style.visibility="visible";
+  }
+  function GoInputReserve(){
+    document.getElementById('Top').style.visibility="collapse";
+    document.getElementById('InputReserve').style.visibility="visible";
+    onReserve();
+  }
+  function GoInputReturn(){
+    document.getElementById('Top').style.visibility="collapse";
+    document.getElementById('InputReturn').style.visibility="visible";
+    onTicket();
+  }
+  function BackChoiceTicket(){
+    document.getElementById('ContentTicket').style.visibility="collapse";
+    document.getElementById('ChoiceTicket').style.visibility="visible";
+  }
+  function BackInputReserve(){
+    document.getElementById('ContentReserve').style.visibility="collapse";
+    document.getElementById('InputReserve').style.visibility="visible";
+  }
+  function BackInputReturn(){
+    document.getElementById('ContentReturn').style.visibility="collapse";
+    document.getElementById('InputReturn').style.visibility="visible";
+  }
+  function GoContentTicket(){
+    document.getElementById('ChoiceTicket').style.visibility="collapse";
+    document.getElementById('ContentTicket').style.visibility="visible";
+  }
+  function GoContentReserve(){
+    document.getElementById('InputReserve').style.visibility="collapse";
+    document.getElementById('ContentReserve').style.visibility="visible";
+    onDefalt();
+  }
+  function GoContentReturn(){
+    document.getElementById('InputReturn').style.visibility="collapse";
+    document.getElementById('ContentReturn').style.visibility="visible";
+    onDefalt();
+  }
+
+  function AccessTicket(id){
+    var x=0;
+    x=DBticket(id);
+    if(x==1){
+      //DBに照合　成功したらx=1が帰ってくるので下の処理を続ける
+      GoContentTicket();
+      InfoTicket(id);
+    }else if (x==2) {
+      banner("照合エラー","入力された番号が間違っています","入力した内容をもう一度確認してください");
+    }else if (x==3) {
+      banner("接続エラー","データベースに接続できませんでした","接続環境を確認してください");
+    }
+  }
+  function AccessReserve(){
+    var ReserveNo=document.forms.Reserve.reserve.value;
+    var TellNo=document.forms.Reserve.tell.value;
+    if( ReserveNo != null && ReserveNo != '' && TellNo != null && TellNo != ''){
+      var y=0;
+      y=DBreserve(ReserveNo,TellNo);
+      if(y==1){
+        //DBに照合　成功したらy=1が帰ってくるので下の処理を続ける
+        GoContentReserve();
+        InfoReserve();
+      }else if (y==2) {
+        banner("照合エラー","入力された番号が間違っています","入力した内容をもう一度確認してください");
+      }else if (y==3) {
+        banner("接続エラー","データベースに接続できませんでした","接続環境を確認してください");
+      }
+    }else{
+      banner("記入漏れ","予約番号と電話番号を入力してください","予約番号と電話番号は入力必須項目です");
+    }
+  }
+  function AccessReturn(){
+    var ReturnNo=document.forms.Return.Ticket.value;
+    if( ReturnNo != null && ReturnNo != ''){
+      var z=0;
+      z=DBreturn(ReturnNo);
+      if(z==1){
+        //DBに照合　成功したらz=1が帰ってくるので下の処理を続ける
+        GoContentReturn();
+        InfoReturn();
+      }else if (z==2) {
+        banner("照合エラー","入力された番号が間違っています","入力した内容をもう一度確認してください");
+      }else if (z==3) {
+        banner("接続エラー","データベースに接続できませんでした","接続環境を確認してください");
+      }
+    }else{
+      banner("記入漏れ","チケット番号を入力してください","チケット番号は入力必須項目です");
+    }
+  }
+  function DBticket(id){
+//
+    return 1;
+  }
+  function DBreserve(id,tell){
+    return 1;
+  }
+  function DBreturn(id){
+    return 1;
+  }
+
+  function InfoTicket(id){
+    var Ticket=document.getElementById('Area11');
+    var Content=document.getElementById('Area12');
+    var Money=document.getElementById('Area13');
+
+    /*var TicketNo=document.forms.Reserve.reserve.value;*/
+    /*var TicketNo=document.getElementById('id')*/
+    /**/
+    /**/
+
+    var ID1;
+    var ID2;
+    var ID3;
+
+    if(id==10100001){
+      ID1="有楽町　行き"
+      ID2="東京メトロ有楽町線"
+      ID3="¥170-"
+    }else if(id==10200002){
+      ID1="東京　行き"
+      ID2="東京メトロ有楽町線 有楽町乗り換え<br> JR山手線・JR京浜東北線"
+      ID3="¥310-"
+    }else if(id==10200003){
+      ID1="神田　行き"
+      ID2="東京メトロ有楽町線 有楽町乗り換え<br> JR山手線・JR京浜東北線"
+      ID3="¥310-"
+    }else if(id==10200004){
+      ID1="秋葉原　行き"
+      ID2="東京メトロ有楽町線 有楽町乗り換え<br> JR山手線・JR京浜東北線"
+      ID3="¥310-"
+    }else if(id==10200005){
+      ID1="御徒町　行き"
+      ID2="東京メトロ有楽町線 有楽町乗り換え<br> JR山手線・JR京浜東北線"
+      ID3="¥330-"
+    }else if(id==10200006){
+      ID1="上野　行き"
+      ID2="東京メトロ有楽町線 有楽町乗り換え<br> JR山手線・JR京浜東北線"
+      ID3="¥330-"
+    }else if(id==10300007){
+      ID1="尾久　行き"
+      ID2="東京メトロ有楽町線 有楽町乗り換え<br> JR山手線・JR京浜東北線　東京・上野乗り換え<br>JR上野東京ライン"
+      ID3="¥340-"
+    }else if(id==10300008){
+      ID1="赤羽　行き"
+      ID2="東京メトロ有楽町線 有楽町乗り換え<br> JR山手線・JR京浜東北線　東京・上野乗り換え<br>JR上野東京ライン"
+      ID3="¥390-"
+    }else if(id==10300009){
+      ID1="浦和　行き"
+      ID2="東京メトロ有楽町線 有楽町乗り換え<br> JR山手線・JR京浜東北線　東京・上野乗り換え<br>JR上野東京ライン"
+      ID3="¥560-"
+    }else if(id==10300010){
+      ID1="さいたま新都心　行き"
+      ID2="東京メトロ有楽町線 有楽町乗り換え<br> JR山手線・JR京浜東北線　東京・上野乗り換え<br>JR上野東京ライン"
+      ID3="¥650-"
+    }else if(id==10300011){
+      ID1="大宮　行き"
+      ID2="東京メトロ有楽町線 有楽町乗り換え<br> JR山手線・JR京浜東北線　東京・上野乗り換え<br>JR上野東京ライン"
+      ID3="¥740-"
+    }else if(id==10300012){
+      ID1="東大宮　行き"
+      ID2="東京メトロ有楽町線 有楽町乗り換え<br> JR山手線・JR京浜東北線　東京・上野乗り換え<br>JR上野東京ライン"
+      ID3="¥850-"
+    }
+
+    Ticket.innerHTML=ID1;
+    Content.innerHTML=ID2;
+    Money.innerHTML=ID3;
+
+  }
+  function InfoReserve(){
+    var Ticket=document.getElementById('Area21');
+    var Content=document.getElementById('Area22');
+    var Money=document.getElementById('Area23');
+
+    var ReserveNo=document.forms.Reserve.reserve.value;
+    /**/
+    /**/
+
+    Ticket.innerHTML=ReserveNo;
+    /*Content.innerHTML=""*/
+    /*Money.innerHTML=""*/
+
+    onReserve();
+    for(var i=0;i<30;i++){onTenkey('BS');}
+    onTell();
+    for(var i=0;i<30;i++){onTenkey('BS');}
+    onDefalt();
+  }
+  function InfoReturn(){
+    var Ticket=document.getElementById('Area31');
+    var Content=document.getElementById('Area32');
+    var Money=document.getElementById('Area33');
+
+    var ReturnNo=document.forms.Return.Ticket.value;
+    /**/
+    /**/
+
+    Ticket.innerHTML=ReturnNo;
+    /*Content.innerHTML=""*/
+    /*Money.innerHTML=""*/
+
+    onTicket();
+    for(var i=0;i<30;i++){onTenkey('BS');}
+    onDefalt();
+  }
+
+  function GoCheckTicket(){
+    showAlert("確認","チケットの購入を確定して<br>よろしいですか？","confirm","CompleteTicket()");
+  }
+  function GoCheckReserve(){
+    showAlert("確認","チケットを発券してよろしいですか？","confirm","CompleteReserve()");
+  }
+  function GoCheckReturn(){
+    showAlert("確認","本当にチケットを返金して<br>よろしいですか？","confirm","CompleteReturn()");
+  }
+  function CompleteTicket(){
+    showAlert('購入完了','購入手続きが完了しました');
+    BackTop();
+  }
+  function CompleteReserve(){
+    showAlert('発券完了','発券処理が完了しました');
+    BackTop();
+  }
+  function CompleteReturn(){
+    showAlert('返金完了','返金手続きが完了しました');
+    BackTop();
+  }
+
+  function banner(title,text,detail = text){
+    var div = document.createElement('div');
+    div.className = "banner";
+    div.setAttribute("onclick","this.style.animation='animation-banner-up 0.5s';showAlert('"+title+"','"+detail+"','noClose')");
+    var h1 = document.createElement('h2');
+    h1.innerHTML = title;
+    var p = document.createElement('p');
+    p.innerHTML = text;
+    div.appendChild(h1);
+    div.appendChild(p);
+    document.getElementsByTagName('body')[0].appendChild(div);
+  }
+  function showAlert(title,txt,popup="hidden",fn=function(){}){
+    //タイトル、本文、(デフォルト=10秒閉じ,noClose=自動で閉じないアラート,その他＝confirm),関数ー＞""で囲む,Okayに渡される
+    var div1 = document.createElement('div');
+    div1.className = "bgAlert";
+    var div2 = document.createElement('div');
+    div2.className = "alert";
+    var h2 = document.createElement('h2');
+    h2.innerHTML = title;
+    var p = document.createElement('p');
+    p.innerHTML = txt;
+    var time = document.createElement('div');
+    time.innerHTML = "Auto Close : 10 sec.";
+    var cancel = document.createElement('button');
+    cancel.innerHTML = "キャンセル";
+    cancel.setAttribute("onclick","hideConfirm(this);");
+    if(popup==("hidden"))cancel.style.visibility="hidden";
+    if(popup==("noClose"))cancel.style.visibility="hidden";
+    var okay = document.createElement('button');
+    okay.style.background = "#5566FF";
+    //
+    okay.setAttribute("onclick","hideConfirm(this,"+fn+");");
+    okay.innerHTML  = "OK";
+    div2.appendChild(h2);
+    div2.appendChild(p);
+    div2.appendChild(cancel);
+    div2.appendChild(okay);
+    div1.appendChild(div2);
+    document.getElementsByTagName('body')[0].appendChild(div1);
+    console.log();
+    if(popup=="hidden"){
+      div2.appendChild(time);
+      console.log(time.innerHTML.replace(/[^0-9]/g,""));
+      var timeout = setInterval(function(time){time.innerHTML = "Auto Close : "+(parseInt(time.innerHTML.replace(/[^0-9]/g,""))-1)+" sec.";},1000,time);
+      setTimeout(function(div1,timeout){clearInterval(timeout);console.log(div1);div1.remove(div1);},11000,div1,timeout);
+    }
+  }
+  function hideConfirm(obj,fc=function(){}){
+    obj.parentNode.parentNode.style.display='none';
+    fc();
+  }
+
+  var inputPlace = "";
+  function onTenkey( num ){
+    if( inputPlace == "" ){
+      return;
+    }
+    var obj;
+    if( num == "RET" ){
+      if( inputPlace == "reserve" ){
+        obj = document.getElementById( "tell" );
+      } else if( inputPlace == "tell" ){
+        obj = document.getElementById( "Next" );
+      } else {
+        obj = document.getElementById( "reserve" );
+      }
+      obj.focus();
+      return;
+    }
+
+    obj = document.getElementById( inputPlace );
+    if( num == "BS" ){
+      var str = obj.value;
+      if( str.length > 0 ){
+        obj.value = str.substr( 0, str.length -1 );
+      }
+    } else {
+      obj.value += num;
+    }
+
+  }
+
+  function onReserve(){inputPlace = "reserve";}
+  function onTell(){inputPlace = "tell";}
+  function onTicket(){inputPlace = "Ticket";}
+  function onDefalt(){inputPlace = "";}
+
+</script>
+
+</body></html>
