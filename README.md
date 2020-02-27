@@ -1,10 +1,9 @@
 ## advan2c-ticketVendingMachine
 
-高度情報演習2CのテーマAのグループワーク「自動販売 (券売) 機」
+授業でやったグループワーク「自動販売 (券売) 機」
 
-### メンバー
-+ Koki Nagahama (AL17083, @hervtea-dev)
-+ Kensyo Nishizawa (AL17086, )
+### 開発形態
+@herp-vtともう1名によるペアプログラミング
 
 ### 機能要件
 + 普通の購入と発券
