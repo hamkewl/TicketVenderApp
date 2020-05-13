@@ -1,4 +1,4 @@
-## advan2c-ticketVendingMachine
+## TicketVenderApp
 
 授業でやったグループワーク「自動販売 (券売) 機」
 
